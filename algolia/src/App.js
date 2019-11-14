@@ -1,28 +1,27 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import SearchBar from './components/SearchBar'
+import SearchResults from './components/SearchResults'
+// Redux Store
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import rootReducer from './reducers';
+
+const store = createStore(rootReducer);
+store.subscribe(() => console.log('store', store.getState()));
 
 
 class App extends Component {
 
-  componentDidMount() {
-  this.test()
-  }
 
-  test() {
-    axios.get("http://hn.algolia.com/api/v1/search?query=stephenhawking&tags=story")
-      .then(function(response) {
-        console.log(response.data)
-      })
-  }
 
   render() {
     return (
-      <form id="topic-form">
-      <label for="button-input">Create a New Topic:</label>
-      <input type="text" id="button-input" /><br/>
-
-      <input id="add-button" type="submit" value="Submit Topic" />
-  </form>
+      <Provider store={store}>
+        <div className="container">
+          <SearchBar />
+          <SearchResults />
+        </div>
+      </Provider>
     )
   }
 }
