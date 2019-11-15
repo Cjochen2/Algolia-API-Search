@@ -19,7 +19,7 @@ class SearchResults extends Component {
                                 <div className='article mb-3' key={i}>
                                     <div className='title'>Title: {info.title}</div>
                                     <div className='author'>Author: {info.author}</div>
-                                    <div className='url'><a href={info.url} target='_blank'>Link: {info.url}</a></div>
+                                    <div className='url'>Link: <a href={info.url} target='_blank'>{info.url}</a></div>
                                 </div>
                             )
 
